@@ -4,39 +4,20 @@ import random
 import re
 import sys
 
-#
-# Complete the 'superDigit' function below.
-#
-# The function is expected to return an INTEGER.
-# The function accepts following parameters:
-#  1. STRING n
-#  2. INTEGER k
-#
+def sup_digits(x,k):
+    a = digsum(x)
+    return sup_digit(str(int(a)*k))
 
-def superDigit(n, k):
-    # Write your code here
-    multiplied_n = n * k
-    multiplied_n = int(multiplied_n)
-    super_digit = 0
+def sup_digit(x):
+    if len(x) <= 1:
+        return x
+    else:
+        return sup_digit( digsum(x) )
 
-    # print(multiplied_n)
-
-    while (multiplied_n > 0 or super_digit > 9):
-        if multiplied_n == 0:
-            multiplied_n = super_digit
-            super_digit = 0
-
-        super_digit = super_digit + (multiplied_n % 10)
-        multiplied_n //= 10
+def digsum(x):
+    return str(sum((int(i) for i in list(x))))
 
 
-    return super_digit
     
-
-initial_digit = "9875"
-digit_count = 4
-
-result = superDigit(initial_digit, digit_count)
-
-print("super digit is: ")
-print(result)
+print("super digit of 9875 * 4 is: " + str(sup_digits("9875", 4)))
+print("super digit of 123 * 3 is: " + str(sup_digits("123", 3)))
