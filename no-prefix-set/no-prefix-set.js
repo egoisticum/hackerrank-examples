@@ -4,52 +4,40 @@
  * The function accepts STRING_ARRAY words as parameter.
  */
 
-function noPrefix1(words) {
-    // Write your code here
-    var retVal = "GOOD SET";
+function insertTrie(trie, word) {
 
-    if (words.length >= 1 && words.length <= Math.pow(10, 5)) {
-        for (var i = 0; i < words.length; i++) {
-
-            if (words[i].length < 1 && words[i].length > 60) {
-                retVal = "BAD SET\n" + words[j];
-                continue;
+    for (var i = 0; i < word.length; i++) {
+        if (word[i] in trie) {
+            if (trie[word[i]][1] || i === word.length - 1) { 
+                return true;
             }
-
-            if (words[i].length >= 1 && words[i].length <= 60) {
-
-                for (var j = 0; j < words.length; j++) {
-                    if (i !== j && words[j].indexOf(words[i]) === 0) {
-                        retVal = "BAD SET\n" + words[j];
-                    }
-                }
-
-            }
+        } else {
+            trie[word[i]] = {};
+            trie[word[i]][1] = i === word.length - 1;
         }
-    } else {
-        retVal = "BAD SET";
+
+        trie, _ = trie[word[i]]
     }
 
+    return false;
 
-    console.log(retVal);
 }
 
 function noPrefix(words) {
-    var retVal = "GOOD SET";
-    words = words.sort();
+    // Write your code here
+    trie = {};
 
-    console.log(words);
-
-    for (var i = 0; i < words.length; i++) { 
-        if(i < words.length - 1) {
-            if (words[i + 1].indexOf(words[i]) === 0) { 
-                retVal = "BAD SET\n" + words[i + 1];
-            }
+    for (var i = 0; i < words.length; i++) {
+        if (insertTrie(trie, words[i])) {
+            console.log("BAD SET\n" + words[i]);
+            return;
         }
     }
 
-    console.log(retVal);
+    console.log("GOOD SET");
+
 }
+
 
 var strArr = [
     'aab',
