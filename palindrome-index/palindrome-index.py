@@ -1,13 +1,23 @@
+def isPalindrome(s):
+    for i in range(len(s)):
+        if s[i] != s[len(s) - 1 - i]:
+            return False
+    return True
+
+
 def palindromeIndex(a): 
     # Write your code here
     
-    if a[0] == a[len(a) - 1] or len(a) < 1 or len(a) > pow(10, 5):
+    if len(a) < 1 or len(a) > pow(10, 5):
+        return -1
+    
+    if isPalindrome(a):
         return -1
         
     for i in range(len(a)):
-        word = a[0:i] + a[i+1:len(a)]
+        newWord = a[0:i] + a[i+1:len(a)]
 
-        if word[0] == word[len(word) - 1]:
+        if isPalindrome(newWord):
             return i
 
     return -1

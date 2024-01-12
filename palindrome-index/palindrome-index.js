@@ -11,25 +11,25 @@ function isPalindrome(s) {
 function palindromeIndex(s) {
     // Write your code here
 
-    if (s.length > Math.pow(10, 5)) { 
+    if (s.length < 1 || s.length > Math.pow(10, 5)) {
         return -1;
     }
 
-    let result = isPalindrome(s);
-    if (result) {
+    if (isPalindrome(s)) {
         return -1;
     }
-    else {
-        for (let i = 0; i < s.length; i++) {
-            let newS = s.slice(0, i) + s.slice(i + 1);
-            if (isPalindrome(newS)) {
-                return i;
-            }
+
+    for (let i = 0; i < s.length; i++) {
+        var newWord = s.slice(0, i) + s.slice(i + 1);
+
+        if (isPalindrome(newWord)) {
+            return i;
         }
-        return -1
     }
+
+    return -1
 }
 
-word = "kayak"
-word = "ayak"
+var word = "kayak";
+word = "ayak";
 console.log("Palindrome index of word " + word + " is: " + palindromeIndex(word))
