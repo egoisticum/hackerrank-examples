@@ -8,19 +8,19 @@ function isPalindrome(s) {
 }
 
 
-function palindromeIndex(s) {
+function palindromeIndex(a) {
     // Write your code here
 
-    if (s.length < 1 || s.length > Math.pow(10, 5)) {
+    if (a.length < 1 || a.length > Math.pow(10, 5)) {
         return -1;
     }
 
-    if (isPalindrome(s)) {
+    if (isPalindrome(a)) {
         return -1;
     }
 
-    for (let i = 0; i < s.length; i++) {
-        var newWord = s.slice(0, i) + s.slice(i + 1);
+    for (let i = 0; i < a.length; i++) {
+        var newWord = a.slice(0, i) + a.slice(i + 1);
 
         if (isPalindrome(newWord)) {
             return i;
