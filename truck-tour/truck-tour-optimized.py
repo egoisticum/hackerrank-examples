@@ -7,26 +7,27 @@
 
 def truckTour(petrolpumps):
     # Write your code here
+
     petrolpumpsLen = len(petrolpumps)
-    bal = []
+    balance = []
+    minimum = 0
 
     for i in range(petrolpumpsLen):
-        bal.append(petrolpumps[i][0] - petrolpumps[i][1])
+        balance.append(petrolpumps[i][0] - petrolpumps[i][1])
 
-
-    small = 0    
-    for strt in range(petrolpumpsLen):
-        s = bal[strt]
-        i = (strt + 1) % petrolpumpsLen
+    for start in range(petrolpumpsLen):
+        s = balance[start]
+        i = (start + 1) % petrolpumpsLen
         
-        while(s >= 0 and i != strt): 
-            s += bal[i]    
+        while s >= 0 and i != start:
+            s += balance[i]
             i = (i + 1) % petrolpumpsLen
-        if(i == strt):
-            small = strt
+
+        if i == start:
+            minimum = start
             break
 
-    return small
+    return minimum
 
 
 inputArr = [[1, 5], [10, 3], [3, 4]]
